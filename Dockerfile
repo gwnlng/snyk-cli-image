@@ -13,7 +13,7 @@ RUN chmod +x ./snyk
 RUN mv ./snyk /usr/local/bin/snyk
 
 FROM registry.access.redhat.com/ubi8-minimal:8.7-1107
-RUN microdnf -y install openssl ca-certificates git
+RUN microdnf -y install openssl ca-certificates git python311 python3.11-pip
 # modify following to install java version from artifactory
 RUN microdnf -y install java-17-openjdk
 RUN mkdir -p /opt/gradle

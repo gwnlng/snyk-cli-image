@@ -14,7 +14,9 @@ else
     # Snyk requires Python to have downloaded the dependencies before running
     # If pip is present on the path, and we find a requirements.txt file, run pip install -r requirements.txt
     # If pipenv is present on the path, and we find a Pipfile without a Pipfile.lock, run pipenv update
-    if [ -x "$(command -v pip)" ]; then
+    if [ -x "$(command -v pip3)" ]; then
+        python3 -m venv /tmp/venv
+        source /tmp/venv/bin/activate
         if [ -f "requirements.txt" ]; then
             out=$(cat requirements.txt | sed -e '/^\s*#.*$/d' -e '/^\s*$/d' | xargs -n 1 pip install 2>&1 || true) # Skipping the dependencies which aren't Installable
         fi
